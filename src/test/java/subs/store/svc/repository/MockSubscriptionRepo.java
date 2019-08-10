@@ -2,8 +2,9 @@ package subs.store.svc.repository;
 
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
-import javax.inject.Singleton;
 import subs.store.svc.model.Subscription;
+
+import javax.inject.Singleton;
 
 @Singleton
 @Requires(env = Environment.TEST)

@@ -10,5 +10,4 @@ public interface SubscriptionClient {
 
   @Get("/user/1")
   HttpResponse<Subscription> fetchSubscription();
-
 }

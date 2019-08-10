@@ -15,5 +15,4 @@ public class SubscriptionNumber {
   public String getValue() {
     return value;
   }
-
 }

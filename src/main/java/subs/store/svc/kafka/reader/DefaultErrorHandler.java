@@ -5,5 +5,4 @@ import io.micronaut.context.annotation.Replaces;
 
 @Replaces(DefaultKafkaListenerExceptionHandler.class)
 public class DefaultErrorHandler {
-
 }

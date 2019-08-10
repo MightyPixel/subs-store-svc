@@ -1,7 +1,5 @@
 package subs.store.svc.controller;
 
-import static org.junit.Assert.assertEquals;
-
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -10,7 +8,8 @@ import io.micronaut.runtime.server.EmbeddedServer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import subs.store.svc.model.Subscription;
+
+import static org.junit.Assert.assertEquals;
 
 // @MicronautTest(environments = Environment.TEST)
 public class SubscriptionControllerTest {
@@ -41,8 +40,7 @@ public class SubscriptionControllerTest {
 
   @Test
   public void testFindUser() {
-    final HttpResponse<Subscription> response =
-        subscriptionClient.toBlocking().exchange("/subscription/user/1", Subscription.class);
+    final HttpResponse response = subscriptionClient.toBlocking().exchange("/subscription/user/1");
     assertEquals(response.status(), HttpStatus.OK);
     // assertEquals(response.body().getSubscriptionNumber().getValue(), "123");
   }

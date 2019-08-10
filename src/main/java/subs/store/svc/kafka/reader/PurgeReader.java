@@ -3,10 +3,11 @@ package subs.store.svc.kafka.reader;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.Topic;
-import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import subs.store.svc.service.PurgeService;
+
+import javax.inject.Inject;
 
 @KafkaListener(groupId = "${micronaut.application.name}")
 public class PurgeReader {

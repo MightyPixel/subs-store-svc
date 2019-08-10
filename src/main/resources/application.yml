@@ -1,7 +1,7 @@
 ---
 micronaut:
-    application:
-        name: subs-store-svc
+  application:
+    name: subs-store-svc
 
 ---
 cassandra:
@@ -20,20 +20,20 @@ tracing:
       probability: 1
 ---
 micronaut:
-    metrics:
-        enabled: true
-        sensitive: false
-        kafka:
-            enabled: true
+  metrics:
+    enabled: true
+    sensitive: false
+    kafka:
+      enabled: true
 
-        export:
-            prometheus:
-                enabled: false
-                step: PT1M
-                descriptions: true
+    export:
+      prometheus:
+        enabled: false
+        step: PT1M
+        descriptions: true
 ---
 kafka:
-    health:
-        enabled: true
-    metrics:
-        enabled: true
+  health:
+    enabled: true
+  metrics:
+    enabled: true
