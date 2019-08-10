@@ -1,5 +1,6 @@
 package subs.store.svc.service;
 
+import com.ft.membership.logging.CompoundOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import subs.store.svc.kafka.writer.PurgeWriter;
@@ -17,8 +18,10 @@ public class PurgeService {
 
   public boolean purge(String userId) {
     LOG.info("Purging userId=" + userId);
+    CompoundOperation action = CompoundOperation.action("purge", this).with("userId", userId).started();
     purgeWriter.sendPurgeConfirmation(userId, "Purged");
 
+    action.wasSuccessful();
     return true;
   }
 }
