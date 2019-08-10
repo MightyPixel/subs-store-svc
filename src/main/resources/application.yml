@@ -1,0 +1,39 @@
+---
+micronaut:
+    application:
+        name: subs-store-svc
+
+---
+cassandra:
+  default:
+    clusterName: "Test Cluster"
+    contactPoints: ["localhost"]
+    maxSchemaAgreementWaitSeconds: 20
+    ssl: false
+---
+tracing:
+  zipkin:
+    enabled: true
+    http:
+      url: http://localhost:9411
+    sampler:
+      probability: 1
+---
+micronaut:
+    metrics:
+        enabled: true
+        sensitive: false
+        kafka:
+            enabled: true
+
+        export:
+            prometheus:
+                enabled: false
+                step: PT1M
+                descriptions: true
+---
+kafka:
+    health:
+        enabled: true
+    metrics:
+        enabled: true

@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: subs.store.svc
+---
+testFramework: junit
+sourceLanguage: java
