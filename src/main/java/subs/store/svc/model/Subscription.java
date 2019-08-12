@@ -37,4 +37,9 @@ public class Subscription implements Serializable {
         SubscriptionNumber.from(subscriptionNumber),
             SubscriptionProvider.from(subscriptionProvider));
   }
+
+  @Override
+  public String toString() {
+    return subscriptionProvider.toString() + '-' + subscriptionNumber.toString();
+  }
 }

@@ -1,7 +1,7 @@
 package subs.store.svc.config;
 
 import brave.propagation.CurrentTraceContext;
-import com.ft.membership.logging.CompoundOperation;
+import com.ft.membership.logging.OperationContext;
 import io.micronaut.context.event.ApplicationEventListener;
 import io.micronaut.discovery.event.ServiceStartedEvent;
 
@@ -15,6 +15,6 @@ public class ApplicationConfig implements ApplicationEventListener<ServiceStarte
 
     @Override
     public void onApplicationEvent(ServiceStartedEvent event) {
-        CompoundOperation.setOperationIdentity(() -> String.valueOf(currentTraceContext.get().traceId()));
+        OperationContext.setOperationIdentity(() -> String.valueOf(currentTraceContext.get().traceId()));
     }
 }

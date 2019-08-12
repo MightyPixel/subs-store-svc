@@ -2,7 +2,7 @@ package subs.store.svc.repository;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Row;
-import com.ft.membership.logging.CompoundOperation;
+import com.ft.membership.logging.OperationContext;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
 import io.micronaut.tracing.annotation.NewSpan;
@@ -27,13 +27,14 @@ public class CassandraSubscriptionRepo implements SubscriptionRepo {
 
   @NewSpan("findSubscription")
   public Subscription findSubscription(final String userId) {
-    CompoundOperation action = CompoundOperation.action("findSubscription", this).started();
+    try (OperationContext action = OperationContext.action("findSubscription", this).started()) {
       final Row row =
-              cluster
-                      .connect(SUBS_STORE_KEYSPACE)
-                      .execute("SELECT * FROM " + SUBSCRIPTIONS_BY_USER_TABLE + " WHERE user_id=" + userId)
-                      .one();
-    action.wasSuccessful();
-    return Subscription.from(row);
+          cluster
+              .connect(SUBS_STORE_KEYSPACE)
+              .execute("SELECT * FROM " + SUBSCRIPTIONS_BY_USER_TABLE + " WHERE user_id=" + userId)
+              .one();
+      action.wasSuccessful();
+      return Subscription.from(row);
+    }
   }
 }
