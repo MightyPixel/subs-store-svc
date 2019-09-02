@@ -1,6 +1,7 @@
 package subs.store.svc.service;
 
 import com.ft.membership.logging.OperationContext;
+import com.ft.membership.logging.SimpleOperationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import subs.store.svc.kafka.writer.PurgeWriter;
@@ -18,7 +19,7 @@ public class PurgeService {
 
   public boolean purge(String userId) {
     LOG.info("Purging userId=" + userId);
-    OperationContext action = OperationContext.action("purge", this).with("userId", userId).started();
+    OperationContext action = SimpleOperationContext.action("purge", this).with("userId", userId).started();
     purgeWriter.sendPurgeConfirmation(userId, "Purged");
 
     action.wasSuccessful();
